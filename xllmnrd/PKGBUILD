@@ -2,8 +2,8 @@
 
 pkgname=xllmnrd-hg
 _appname=xllmnrd
-pkgver=2.0.31e1a7c
 pkgrel=1
+pkgver=r624.f95075e7fba4
 pkgdesc="An IPv6 LLMNR responder daemon"
 arch=('i686' 'x86_64')
 url='https://bitbucket.org/kazssym/xllmnrd/overview'
@@ -15,6 +15,11 @@ source=(
 )
 sha256sums=('SKIP'
             'c081d80a57921992ea80b88518a186c8aba26d3bd780d76a34cb772bf45f20a7')
+
+pkgver() {
+  cd "$_appname"
+  printf "r%s.%s" "$(hg identify -n)" "$(hg identify -i)"
+}
 
 build() {
 	cd ${srcdir}/xllmnrd
