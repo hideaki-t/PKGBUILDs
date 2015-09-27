@@ -1,0 +1,11 @@
+[Unit]
+Description=IPv6 LLMNR Daemon
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/xllmnrd
+KillMode=process
+Type=forking
+
+[Install]
+WantedBy=multi-user.target

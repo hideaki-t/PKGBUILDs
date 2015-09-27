@@ -1,0 +1,25 @@
+# Maintainer: Hideaki Takahashi <mymelo+aur@gmail.com>
+
+pkgname=xrot
+pkgver=2.0.0
+pkgrel=1
+pkgdesc="A X Window game"
+arch=('i686' 'x86_64')
+url='https://github.com/msiro/xrot'
+license=('custom')
+depends=('xorg-fonts-100dpi' 'libxpm')
+make_depends=('imake')
+source=("https://github.com/msiro/xrot/raw/master/xrot-2.0.0.tar.gz")
+sha256sums=('315d18c06647ea723cacb1572b3a874b72d2dd1b7d4edefbd70accb93af3768f')
+
+build() {
+	cd ${srcdir}/xrot
+        xmkmf
+	make xrot
+}
+
+package() {
+	  cd ${srcdir}/xrot
+          install -Dm755 xrot ${pkgdir}/usr/bin/xrot
+	  install -Dm644 README ${pkgdir}/usr/share/licenses/${pkgname}/README
+}

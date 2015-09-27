@@ -1,0 +1,32 @@
+# Maintainer: Hideaki Takahashi <mymelo+aur@gmail.com>
+
+pkgname=xllmnrd-hg
+_appname=xllmnrd
+pkgver=2.0.31e1a7c
+pkgrel=1
+pkgdesc="An IPv6 LLMNR responder daemon"
+arch=('i686' 'x86_64')
+url='https://bitbucket.org/kazssym/xllmnrd/overview'
+license=('GPL3')
+make_depends=('cppunit', 'hg')
+source=(
+	"hg+https://bitbucket.org/kazssym/xllmnrd"
+	"xllmnrd.service"
+)
+sha256sums=('SKIP'
+            'c081d80a57921992ea80b88518a186c8aba26d3bd780d76a34cb772bf45f20a7')
+
+build() {
+	cd ${srcdir}/xllmnrd
+	autoreconf
+	./configure --prefix=/usr --sbindir=/usr/bin
+	make
+
+}
+
+package() {
+	  cd ${srcdir}/xllmnrd
+	  make DESTDIR="${pkgdir}" install
+
+	  install -Dm644 ../xllmnrd.service "${pkgdir}"/usr/lib/systemd/system/xllmnrd.service
+}
