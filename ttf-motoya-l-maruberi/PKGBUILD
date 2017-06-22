@@ -1,0 +1,16 @@
+pkgname=ttf-motoya-l-maruberi
+pkgver=1.01
+pkgrel=1
+pkgdesc="Motoya L Maruberi W3 mono"
+arch=('any')
+url="http://www.motoya.co.jp/"
+license=('Apache')
+depends=('fontconfig' 'xorg-font-utils')
+source=(MTLmr3m.ttf::https://sourceforge.net/p/android-x86/frameworks_base/ci/marshmallow-x86/tree/data/fonts/MTLmr3m.ttf?format=raw)
+sha256sums=('403bedfa178cbda07d751d2f9316a191591f0921e3c936f68f22c0d06e69f984')
+
+package() {
+  install -d ${pkgdir}/usr/share/fonts/TTF
+  install -Dm644 ${srcdir}/MTLmr3m.ttf ${pkgdir}/usr/share/fonts/TTF
+}
+

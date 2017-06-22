@@ -1,0 +1,18 @@
+pkgname=ttf-tanuki-permanent-marker
+pkgver=1.20
+pkgrel=1
+pkgdesc=""
+arch=('any')
+url="http://tanukifont.com/tanuki-permanent-marker/"
+license=('custom')
+depends=('fontconfig' 'xorg-font-utils')
+source=('http://tanukifont.com/download/TanukiMagic_1_20.zip')
+sha256sums=('49d5170f27614499381089e2822d8c1d4e66a81f24b5accef746235e939d324f')
+
+package() {
+  install -d ${pkgdir}/usr/share/fonts/TTF
+  base=$(basename ${source[0]} .zip)
+  install -Dm644 ${srcdir}/${base}/*.ttf ${pkgdir}/usr/share/fonts/TTF
+  install -Dm644 ${srcdir}/${base}/*.txt ${pkgdir}/usr/share/licenses/${pkgname}
+}
+

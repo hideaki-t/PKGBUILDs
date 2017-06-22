@@ -1,0 +1,16 @@
+pkgname=ttf-motoya-l-cedar
+pkgver=1.01
+pkgrel=1
+pkgdesc="Motoya L Cedar W3 mono"
+arch=('any')
+url="http://www.motoya.co.jp/"
+license=('Apache')
+depends=('fontconfig' 'xorg-font-utils')
+source=(MTLc3m.ttf::https://sourceforge.net/p/android-x86/frameworks_base/ci/marshmallow-x86/tree/data/fonts/MTLc3m.ttf?format=raw)
+sha256sums=('9b12932d3be5e9b3937029acbe8feaa2e11575a4d216d267dce8148fcc040732')
+
+package() {
+  install -d ${pkgdir}/usr/share/fonts/TTF
+  install -Dm644 ${srcdir}/MTLc3m.ttf ${pkgdir}/usr/share/fonts/TTF
+}
+
